@@ -5,11 +5,22 @@ import { teachers } from '../data/teachers';
 
 const TeacherShowcase: React.FC = () => {
   const [selectedTeacher, setSelectedTeacher] = useState<number | null>(null);
+  const [imageError, setImageError] = useState(false);
 
   const closeModal = () => setSelectedTeacher(null);
 
   const selectedTeacherData = selectedTeacher !== null ? teachers.find(t => t.id === selectedTeacher) : null;
   const teacher = teachers[0]; // Mr. Shivendra
+
+  const handleImageError = () => {
+    console.error('Failed to load image:', teacher.photo);
+    setImageError(true);
+  };
+
+  const handleImageLoad = () => {
+    console.log('Image loaded successfully:', teacher.photo);
+    setImageError(false);
+  };
 
   return (
     <div className="py-8 sm:py-12 md:py-16 lg:py-20">
@@ -40,11 +51,23 @@ const TeacherShowcase: React.FC = () => {
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center">
             <div className="relative order-2 lg:order-1">
-              <img
-                src={teacher.photo}
-                alt={teacher.name}
-                className="w-full h-64 sm:h-80 md:h-96 object-cover rounded-xl sm:rounded-2xl shadow-xl sm:shadow-2xl"
-              />
+              {imageError ? (
+                <div className="w-full h-64 sm:h-80 md:h-96 bg-gray-200 rounded-xl sm:rounded-2xl flex items-center justify-center">
+                  <div className="text-center text-gray-500">
+                    <BookOpen className="h-16 w-16 mx-auto mb-4 text-gray-400" />
+                    <p className="text-lg font-medium">Image not available</p>
+                    <p className="text-sm">Path: {teacher.photo}</p>
+                  </div>
+                </div>
+              ) : (
+                <img
+                  src={teacher.photo}
+                  alt={teacher.name}
+                  className="w-full h-64 sm:h-80 md:h-96 object-cover rounded-xl sm:rounded-2xl shadow-xl sm:shadow-2xl"
+                  onError={handleImageError}
+                  onLoad={handleImageLoad}
+                />
+              )}
               <div className="absolute -bottom-2 sm:-bottom-4 -right-2 sm:-right-4 bg-white rounded-full p-2 sm:p-3 shadow-lg">
                 <div className="flex items-center space-x-1">
                   <Star className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-500 fill-current" />
@@ -215,6 +238,7 @@ const TeacherShowcase: React.FC = () => {
                   src={selectedTeacherData.photo}
                   alt={selectedTeacherData.name}
                   className="w-full h-48 sm:h-64 object-cover"
+                  onError={handleImageError}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 text-white">
