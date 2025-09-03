@@ -16,7 +16,7 @@ export const teachers: Teacher[] = [
     name: "Shivendra Pratap Singh",
     subject: "Mathematics",
     grade: "Class Teacher",
-    photo: "/teacher.jpg",
+    photo: `${import.meta.env.BASE_URL}teacher.jpg`,
     achievements: [
       "Led students to 100% pass rate in board mathematics",
       "Mentored state-level math olympiad finalists",
