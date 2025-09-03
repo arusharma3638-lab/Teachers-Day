@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8" />
     <title>Redirecting…</title>
-    <meta http-equiv="refresh" content="0; url=/Teachers-Day/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
@@ -12,11 +11,16 @@
       // send them back to the app entry at /Teachers-Day/
       (function() {
         var base = '/Teachers-Day/';
-        if (location.pathname.startsWith(base)) {
+        var path = location.pathname;
+        // If already at base, just load app
+        if (path === base) {
           location.replace(base);
-        } else {
-          location.replace('/');
+          return;
         }
+        // Strip leading base and rebuild as hash route
+        var rest = path.indexOf(base) === 0 ? path.slice(base.length) : path.replace(/^\//, '');
+        var redirectTo = base + '#' + '/' + rest + location.search + location.hash;
+        location.replace(redirectTo);
       })();
     </script>
     <noscript>
