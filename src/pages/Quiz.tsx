@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle, XCircle, RotateCcw, Trophy, Brain, Target } from 'lucide-react';
-import { quizQuestions } from '../data/quiz-questions';
+import { teachersDayQuestions, mathsQuestions } from '../data/quiz-questions';
 
 const Quiz: React.FC = () => {
+  const [category, setCategory] = useState<'teachers' | 'maths'>('teachers');
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [score, setScore] = useState(0);
@@ -12,8 +13,9 @@ const Quiz: React.FC = () => {
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [userAnswers, setUserAnswers] = useState<number[]>([]);
 
-  const question = quizQuestions[currentQuestion];
-  const totalQuestions = quizQuestions.length;
+  const activeQuestions = category === 'teachers' ? teachersDayQuestions : mathsQuestions;
+  const question = activeQuestions[currentQuestion];
+  const totalQuestions = activeQuestions.length;
   const percentage = Math.round((score / totalQuestions) * 100);
 
   const handleAnswerSelect = (answerIndex: number) => {
@@ -47,6 +49,17 @@ const Quiz: React.FC = () => {
   };
 
   const restartQuiz = () => {
+    setCurrentQuestion(0);
+    setSelectedAnswer(null);
+    setScore(0);
+    setShowResult(false);
+    setAnswered(false);
+    setQuizCompleted(false);
+    setUserAnswers([]);
+  };
+
+  const switchCategory = (newCategory: 'teachers' | 'maths') => {
+    setCategory(newCategory);
     setCurrentQuestion(0);
     setSelectedAnswer(null);
     setScore(0);
@@ -130,11 +143,40 @@ const Quiz: React.FC = () => {
             <Brain className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12" />
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-3 sm:mb-4">
-            Teachers' Day Quiz
+            {category === 'teachers' ? "Teachers' Day Quiz" : 'Mathematics Quiz'}
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-            Test your knowledge about teachers, education, and the importance of teaching!
+            {category === 'teachers'
+              ? 'Test your knowledge about teachers, education, and the importance of teaching!'
+              : 'Challenge yourself with Class 9 Maths questions!'}
           </p>
+        </motion.div>
+
+        {/* Category Selector */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-6 sm:mb-8 flex items-center justify-center"
+        >
+          <div className="bg-white rounded-full p-1 shadow-lg border border-gray-100 inline-flex">
+            <button
+              onClick={() => switchCategory('teachers')}
+              className={`px-4 sm:px-6 py-2 rounded-full text-sm sm:text-base font-semibold transition-all ${
+                category === 'teachers' ? 'bg-gradient-to-r from-blue-500 to-teal-500 text-white' : 'text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              Teachers' Day
+            </button>
+            <button
+              onClick={() => switchCategory('maths')}
+              className={`px-4 sm:px-6 py-2 rounded-full text-sm sm:text-base font-semibold transition-all ${
+                category === 'maths' ? 'bg-gradient-to-r from-blue-500 to-teal-500 text-white' : 'text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              Mathematics
+            </button>
+          </div>
         </motion.div>
 
         {/* Progress Bar */}

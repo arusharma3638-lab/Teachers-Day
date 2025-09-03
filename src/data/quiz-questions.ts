@@ -6,7 +6,7 @@ export interface QuizQuestion {
   explanation: string;
 }
 
-export const quizQuestions: QuizQuestion[] = [
+export const teachersDayQuestions: QuizQuestion[] = [
   {
     id: 1,
     question: "When is World Teachers' Day celebrated?",
@@ -79,3 +79,89 @@ export const quizQuestions: QuizQuestion[] = [
     explanation: "Social Learning Theory, developed by Albert Bandura, emphasizes learning through observation and social interaction."
   }
 ];
+
+export const mathsQuestions: QuizQuestion[] = [
+  {
+    id: 1,
+    question: "(Number System) The decimal expansion of 7/12 will be:",
+    options: [
+      "Terminating decimal",
+      "Non-terminating repeating decimal",
+      "Non-terminating non-repeating decimal",
+      "Irrational number"
+    ],
+    correctAnswer: 1,
+    explanation: "7/12 in decimal form is 0.58(3), which repeats, so it's non-terminating repeating."
+  },
+  {
+    id: 2,
+    question: "(Polynomials) If one zero of p(x)=x^2+3x+k is -2, the value of k is:",
+    options: ["4", "-4", "2", "-2"],
+    correctAnswer: 2,
+    explanation: "Sum of zeros = -3 ⇒ other zero = -1; product = k = (-2)×(-1)=2."
+  },
+  {
+    id: 3,
+    question: "(Coordinate Geometry) The point (0, -5) lies on:",
+    options: ["x-axis", "y-axis", "Origin", "None of these"],
+    correctAnswer: 1,
+    explanation: "Points with x=0 lie on the y-axis."
+  },
+  {
+    id: 4,
+    question: "(Linear Equations) The solution of 2x+3y=12 and x−y=1 is:",
+    options: ["(3,2)", "(2,3)", "(4,2)", "(2,4)"],
+    correctAnswer: 0,
+    explanation: "From x−y=1 ⇒ x=y+1; substitute into 2x+3y=12 ⇒ y=2, x=3."
+  },
+  {
+    id: 5,
+    question: "(Euclid’s Geometry) A point has:",
+    options: ["Length only", "Breadth only", "Length and breadth", "No dimension"],
+    correctAnswer: 3,
+    explanation: "A point has position but no dimension."
+  },
+  {
+    id: 6,
+    question: "(Triangles) If two sides are 5 cm and 12 cm, the third side cannot be:",
+    options: ["6 cm", "12 cm", "17 cm", "20 cm"],
+    correctAnswer: 3,
+    explanation: "Triangle inequality ⇒ third side must be >7 and <17; 20 cm is impossible."
+  },
+  {
+    id: 7,
+    question: "(Quadrilaterals) The diagonals of a rhombus:",
+    options: [
+      "Are equal and bisect each other at right angles",
+      "Are unequal and bisect each other at right angles",
+      "Are equal but do not bisect each other",
+      "None of these"
+    ],
+    correctAnswer: 1,
+    explanation: "Rhombus diagonals are perpendicular and bisect each other; they are generally unequal."
+  },
+  {
+    id: 8,
+    question: "(Circles) The angle subtended by a semicircle at any point on the circle is:",
+    options: ["90°", "60°", "180°", "45°"],
+    correctAnswer: 0,
+    explanation: "Angle in a semicircle is a right angle (Thales' theorem)."
+  },
+  {
+    id: 9,
+    question: "(Surface Areas & Volumes) If radius doubles in V=(1/3)πr^2h, the volume becomes:",
+    options: ["2 times", "3 times", "4 times", "8 times"],
+    correctAnswer: 2,
+    explanation: "Volume ∝ r^2; doubling r multiplies V by 4."
+  },
+  {
+    id: 10,
+    question: "(Probability) Probability of drawing a red queen from a deck:",
+    options: ["1/26", "1/13", "1/52", "2/13"],
+    correctAnswer: 0,
+    explanation: "There are 2 red queens out of 52 cards ⇒ 2/52 = 1/26."
+  }
+];
+
+// Backward-compatible default export for existing imports
+export const quizQuestions = teachersDayQuestions;
