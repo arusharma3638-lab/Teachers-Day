@@ -63,7 +63,7 @@ const TeacherShowcase: React.FC = () => {
                 <img
                   src={teacher.photo}
                   alt={teacher.name}
-                  className="w-full h-64 sm:h-80 md:h-96 object-cover rounded-xl sm:rounded-2xl shadow-xl sm:shadow-2xl"
+                  className="w-full h-64 sm:h-80 md:h-96 object-contain object-center bg-white rounded-xl sm:rounded-2xl shadow-xl sm:shadow-2xl p-2"
                   onError={handleImageError}
                   onLoad={handleImageLoad}
                 />
@@ -237,7 +237,7 @@ const TeacherShowcase: React.FC = () => {
                 <img
                   src={selectedTeacherData.photo}
                   alt={selectedTeacherData.name}
-                  className="w-full h-48 sm:h-64 object-cover"
+                  className="w-full h-56 sm:h-72 md:h-80 object-contain object-center bg-white"
                   onError={handleImageError}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
