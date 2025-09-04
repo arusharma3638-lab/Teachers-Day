@@ -215,7 +215,7 @@ const TeacherShowcase: React.FC = () => {
 
       {/* Teacher Detail Modal */}
       {selectedTeacherData && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-2 sm:p-4">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-2 sm:p-4" onClick={closeModal}>
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -301,7 +301,6 @@ const TeacherShowcase: React.FC = () => {
               </div>
             </div>
           </motion.div>
-          <div className="absolute inset-0" onClick={closeModal} />
         </div>
       )}
     </div>

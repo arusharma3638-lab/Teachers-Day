@@ -102,6 +102,14 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         {children}
       </main>
 
+      {/* Builder Credit Badge (Prominent) */}
+      <div className="fixed bottom-4 right-4 z-50">
+        <div className="inline-flex items-center gap-2 px-4 py-3 rounded-full shadow-xl ring-1 ring-white/40 bg-gradient-to-r from-blue-600 to-teal-500 text-white text-sm sm:text-base font-bold transform transition-transform duration-200 hover:scale-105 animate-pulse">
+          <Heart className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
+          <span>Built by Aru Sharma</span>
+        </div>
+      </div>
+
       {/* Footer */}
       <footer className="bg-gradient-to-r from-gray-900 to-gray-800 text-white mt-12 sm:mt-16 md:mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
@@ -144,7 +152,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           
           <div className="border-t border-gray-700 mt-6 sm:mt-8 pt-6 sm:pt-8 text-center">
             <p className="text-gray-400 text-xs sm:text-sm">
-              © 2024 Teachers' Day Website. Created with appreciation for educators worldwide.
+              © 2024 Teachers' Day Website. Created with appreciation for educators worldwide • Built by <span className="text-white font-semibold">Aru Sharma</span>.
             </p>
           </div>
         </div>
